@@ -79,6 +79,7 @@ h6 {
 body {
   background-color: rgba(0, 0, 0, 0.693);
   position: relative;
+  font-family: sans-serif;
 }
 
 main {
@@ -96,15 +97,16 @@ main {
 .rounds-section,
 .score-section {
   border: solid white 3px;
-  margin-bottom: 100px;
-  max-width: 100%;
+  width: 40vw;
   border-radius: 10px;
   margin-inline: 200px;
   text-align: center;
+  margin-bottom: 40px;
 }
 .rounds-section #rounds,
 .score-section #rounds {
   text-align: center;
+  display: flex;
 }
 
 .round-amount-counter {
