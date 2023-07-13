@@ -95,12 +95,12 @@ const handlePlayerChoice = event => {
 
   if (cpuChoiceResult === 'paper' && event.target.value === 'scissors') {
     choiceContainer.innerHTML =
-      'scissors <span class="all-player">(comp)</span> beats rock <span class="all-player">(player)</span>'
+      'scissors <span class="all-player">(comp)</span> beats paper <span class="all-player">(player)</span>'
     cpuScore++
     cpuScoreOutput.textContent = cpuScore
   } else if (event.target.value === 'paper' && cpuChoiceResult === 'scissors') {
     choiceContainer.innerHTML =
-      'scissors <span class="all-player">(player)</span> beats rock <span class="all-player">(comp)</span>'
+      'scissors <span class="all-player">(player)</span> beats paper <span class="all-player">(comp)</span>'
     playerScore++
     userScoreOutput.textContent = playerScore
   }
