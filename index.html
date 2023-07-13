@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/styles/css/style.css" />
+    <script defer src="./assets/js/index.js"></script>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <main>
+      <section class="rounds-section">
+        <label for="rounds"></label>
+        <p>How many rounds?</p>
+        <div class="round-amount-counter">
+          <div>
+            <label>
+              <input type="radio" name="rounds" id="five" value="5" />
+              <span>5 Rounds</span>
+            </label>
+            <label>
+              <input type="radio" name="rounds" id="ten" value="10" />
+              <span>10 Rounds</span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="rounds" id="fiveteen" value="15" />
+              <span>15 Rounds</span>
+            </label>
+            <label>
+              <input type="radio" name="rounds" id="twenty" value="20" />
+              <span>20 Rounds</span>
+            </label>
+          </div>
+        </div>
+      </section>
+      <section class="score-section">
+        <p><span>USER</span> <span class="user">0</span> : <span class="comp">0</span> <span>COMP</span></p>
+      </section>
+      <section class="choice-section">
+        <h2 class="choices">Let's play</h2>
+        <div class="player-choice">
+          <button value="rock" class="rock button-choice" class="choice"></button>
+          <button value="paper" class="paper button-choice" class="choice"></button>
+          <button value="scissors" class="scissors button-choice" class="choice"></button>
+        </div>
+        <p>MAKE YOUR MOVE.</p>
+        <button class="restart">Restart</button>
+      </section>
+    </main>
+  </body>
+</html>
