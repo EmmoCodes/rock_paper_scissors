@@ -119,24 +119,24 @@ const handlePlayerChoice = event => {
     winner = 'cpu'
   }
 
-  circleColor(event)
+  circleColor(event.currentTarget)
 }
 
 const circleColor = event => {
   let colorClass = ''
   if (winner === 'player') {
-    event.currentTarget.classList.add('win')
+    event.classList.add('win')
     colorClass = 'win'
   } else if (winner === 'draw') {
-    event.currentTarget.classList.add('draw')
+    event.classList.add('draw')
     colorClass = 'draw'
   } else if (winner === 'cpu') {
-    event.currentTarget.classList.add('lose')
+    event.classList.add('lose')
     colorClass = 'lose'
   }
 
   setTimeout(() => {
-    event.target.closest('button').classList.remove(colorClass)
+    event.classList.remove(colorClass)
   }, 800)
 }
 
