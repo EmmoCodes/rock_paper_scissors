@@ -10,9 +10,6 @@ const roundsAmountCounter = document.body.querySelector('.round-amount-counter')
 
 const choiceContainer = document.body.querySelector('.choices')
 const playerChoiceContainer = document.body.querySelector('.player-choice')
-const rockChoice = document.body.querySelector('.rock').value
-const paperChoice = document.body.querySelector('.paper').value
-const scissorsChoice = document.body.querySelector('.scissors').value
 
 const restartBtn = document.body.querySelector('.restart')
 
@@ -74,7 +71,9 @@ const handlePlayerChoice = event => {
       'paper <span class="all-player">(comp)</span> beats rock <span class="all-player">(player)</span>'
     cpuScore++
     cpuScoreOutput.textContent = cpuScore
-  } else if (event.target.value === 'paper' && cpuChoiceResult === 'rock') {
+  }
+
+  if (event.target.value === 'paper' && cpuChoiceResult === 'rock') {
     choiceContainer.innerHTML =
       'paper <span class="all-player">(player)</span> beats rock <span class="all-player">(comp)</span>'
     playerScore++
@@ -83,26 +82,30 @@ const handlePlayerChoice = event => {
 
   if (cpuChoiceResult === 'scissors' && event.target.value === 'rock') {
     choiceContainer.innerHTML =
-      'scissors <span class="all-player">(comp)</span> beats rock <span class="all-player">(player)</span>'
-    cpuScore++
-    cpuScoreOutput.textContent = cpuScore
-  } else if (event.target.value === 'scissors' && cpuChoiceResult === 'rock') {
-    choiceContainer.innerHTML =
-      'scissors <span class="all-player">(player)</span> beats rock <span class="all-player">(comp)</span>'
+      'rock <span class="all-player">(player)</span> beats scissors <span class="all-player">(comp)</span>'
     playerScore++
     userScoreOutput.textContent = playerScore
   }
 
-  if (cpuChoiceResult === 'paper' && event.target.value === 'scissors') {
+  if (event.target.value === 'scissors' && cpuChoiceResult === 'rock') {
     choiceContainer.innerHTML =
-      'scissors <span class="all-player">(comp)</span> beats paper <span class="all-player">(player)</span>'
+      'rock <span class="all-player">(comp)</span> beats scissors <span class="all-player">(player)</span>'
     cpuScore++
     cpuScoreOutput.textContent = cpuScore
-  } else if (event.target.value === 'paper' && cpuChoiceResult === 'scissors') {
+  }
+
+  if (cpuChoiceResult === 'paper' && event.target.value === 'scissors') {
     choiceContainer.innerHTML =
       'scissors <span class="all-player">(player)</span> beats paper <span class="all-player">(comp)</span>'
     playerScore++
     userScoreOutput.textContent = playerScore
+  }
+
+  if (event.target.value === 'paper' && cpuChoiceResult === 'scissors') {
+    choiceContainer.innerHTML =
+      'scissors <span class="all-player">(comp)</span> beats paper <span class="all-player">(player)</span>'
+    cpuScore++
+    cpuScoreOutput.textContent = cpuScore
   }
 }
 
