@@ -10,6 +10,7 @@ const roundsAmountCounter = document.body.querySelector('.round-amount-counter')
 
 const choiceContainer = document.body.querySelector('.choices')
 const playerChoiceContainer = document.body.querySelector('.player-choice')
+const buttonsChoice = document.querySelectorAll('.button-choice')
 
 const restartBtn = document.body.querySelector('.restart')
 
@@ -19,6 +20,7 @@ let playerScore = 0
 let cpuScore = 0
 let currentRound = 0
 let amountRounds
+let winner = ''
 
 const roundsAmount = () => {
   rounds.forEach(element => {
@@ -37,13 +39,15 @@ const handlePlayerChoice = event => {
     return
   }
 
-  if (event.target.value === 'rock') {
-    console.log(event.target.value)
-  } else if (event.target.value === 'paper') {
-    console.log(event.target.value)
-  } else if (event.target.value === 'scissors') {
-    console.log(event.target.value)
-  } else if (!event.target.classList.contains('choice')) {
+  const playerChoice = event.currentTarget.value
+
+  if (playerChoice === 'rock') {
+    console.log(playerChoice)
+  } else if (playerChoice === 'paper') {
+    console.log(playerChoice)
+  } else if (playerChoice === 'scissors') {
+    console.log(event.currentTarget.value)
+  } else if (!playerChoice.classList.contains('choice')) {
     return
   }
 
@@ -55,62 +59,93 @@ const handlePlayerChoice = event => {
 
   let cpuChoiceResult = computerPlay()
 
-  if (event.target.value === 'rock' || event.target.value === 'paper' || event.target.value === 'scissors') {
+  if (playerChoice === 'rock' || playerChoice === 'paper' || playerChoice === 'scissors') {
     console.log(cpuChoiceResult)
     currentRound++
   }
 
   roundsAmountCounter.textContent = `${currentRound} / ${amountRounds}`
 
-  if (event.target.value === cpuChoiceResult) {
-    choiceContainer.innerHTML = '<span class="draw">Draw</span>'
+  if (playerChoice === cpuChoiceResult) {
+    choiceContainer.innerHTML = '<span class="draw-output">Draw</span>'
+    winner = 'draw'
   }
 
-  if (cpuChoiceResult === 'paper' && event.target.value === 'rock') {
+  if (cpuChoiceResult === 'paper' && playerChoice === 'rock') {
     choiceContainer.innerHTML =
       'paper <span class="all-player">(comp)</span> beats rock <span class="all-player">(player)</span>'
     cpuScore++
     cpuScoreOutput.textContent = cpuScore
+    winner = 'cpu'
   }
 
-  if (event.target.value === 'paper' && cpuChoiceResult === 'rock') {
+  if (playerChoice === 'paper' && cpuChoiceResult === 'rock') {
     choiceContainer.innerHTML =
       'paper <span class="all-player">(player)</span> beats rock <span class="all-player">(comp)</span>'
     playerScore++
     userScoreOutput.textContent = playerScore
+    winner = 'player'
   }
 
-  if (cpuChoiceResult === 'scissors' && event.target.value === 'rock') {
+  if (cpuChoiceResult === 'scissors' && playerChoice === 'rock') {
     choiceContainer.innerHTML =
       'rock <span class="all-player">(player)</span> beats scissors <span class="all-player">(comp)</span>'
     playerScore++
     userScoreOutput.textContent = playerScore
+    winner = 'player'
   }
 
-  if (event.target.value === 'scissors' && cpuChoiceResult === 'rock') {
+  if (playerChoice === 'scissors' && cpuChoiceResult === 'rock') {
     choiceContainer.innerHTML =
       'rock <span class="all-player">(comp)</span> beats scissors <span class="all-player">(player)</span>'
     cpuScore++
     cpuScoreOutput.textContent = cpuScore
+    winner = 'cpu'
   }
 
-  if (cpuChoiceResult === 'paper' && event.target.value === 'scissors') {
+  if (cpuChoiceResult === 'paper' && playerChoice === 'scissors') {
     choiceContainer.innerHTML =
       'scissors <span class="all-player">(player)</span> beats paper <span class="all-player">(comp)</span>'
     playerScore++
     userScoreOutput.textContent = playerScore
+    winner = 'player'
   }
 
-  if (event.target.value === 'paper' && cpuChoiceResult === 'scissors') {
+  if (playerChoice === 'paper' && cpuChoiceResult === 'scissors') {
     choiceContainer.innerHTML =
       'scissors <span class="all-player">(comp)</span> beats paper <span class="all-player">(player)</span>'
     cpuScore++
     cpuScoreOutput.textContent = cpuScore
+    winner = 'cpu'
   }
+
+  circleColor(event)
 }
 
+const circleColor = event => {
+  let colorClass = ''
+  if (winner === 'player') {
+    event.currentTarget.classList.add('win')
+    colorClass = 'win'
+  } else if (winner === 'draw') {
+    event.currentTarget.classList.add('draw')
+    colorClass = 'draw'
+  } else if (winner === 'cpu') {
+    event.currentTarget.classList.add('lose')
+    colorClass = 'lose'
+  }
+
+  setTimeout(() => {
+    event.target.closest('button').classList.remove(colorClass)
+  }, 800)
+}
+
+roundsAmount()
 roundsSection.addEventListener('click', roundsAmount)
-playerChoiceContainer.addEventListener('click', handlePlayerChoice)
+
+buttonsChoice.forEach(button => {
+  button.addEventListener('click', handlePlayerChoice)
+})
 
 restartBtn.addEventListener('click', () => {
   location.reload()

@@ -42,23 +42,6 @@ main {
   justify-content: space-around;
 }
 
-label,
-p,
-h2,
-a {
-  color: white;
-  font-size: 1.5rem;
-}
-
-p {
-  font-size: 2.5rem;
-}
-
-h2 {
-  font-size: 3rem;
-  text-align: center;
-}
-
 .player-choice {
   display: flex;
   justify-content: center;
@@ -73,61 +56,37 @@ h2 {
   position: relative;
   border: none;
   border: solid white 3px;
-}
-
-.rock {
-  background: center / 70px no-repeat url('../../img/rock.png');
-  transition-duration: 300ms;
-}
-.paper {
-  background: center / 70px no-repeat url('../../img/paper.png');
-  transition-duration: 300ms;
-}
-.scissors {
-  background: center / 70px no-repeat url('../../img/scissor.png');
-  transition-duration: 300ms;
-}
-
-label {
-  display: flex;
-  cursor: pointer;
-  font-weight: 500;
   position: relative;
-  overflow: hidden;
-  margin-bottom: 0.375em;
-
-  input {
+  transition-duration: 300ms;
+  img {
     position: absolute;
-    left: -9999px;
-    &:checked + span {
-      background-color: (#fff, variables.$primary-color, 84%);
-      &:before {
-        box-shadow: inset 0 0 0 0.4375em variables.$primary-color;
-      }
-    }
+    width: 75px;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
   }
-  span {
-    display: flex;
-    align-items: center;
-    padding: 0.375em 0.75em 0.375em 0.375em;
-    border-radius: 99em; // or something higher...
-    transition: 0.25s ease;
-    &:hover {
-      background-color: mix(#f7bf08, variables.$primary-color, 84%);
-    }
-    &:before {
-      display: flex;
-      flex-shrink: 0;
-      content: '';
-      background-color: #675311;
-      width: 1.5em;
-      height: 1.5em;
-      border-radius: 50%;
-      margin-right: 0.375em;
-      transition: 0.25s ease;
-      box-shadow: inset 0 0 0 0.125em variables.$primary-color;
-    }
-  }
+}
+
+.win {
+  box-shadow: inset 0 0 50px #ffffff6e, inset 20px 0 80px rgba(89, 255, 0, 0.655),
+    inset -20px 0 80px rgba(26, 255, 0, 0.559), inset 20px 0 300px rgba(89, 255, 0, 0.507),
+    inset -20px 0 300px rgb(89, 255, 0), 0 0 50px #ffffff79, -10px 0 80px rgb(89, 255, 0), 10px 0 80px rgb(55, 136, 11);
+  transition-duration: 300ms;
+}
+
+.draw {
+  box-shadow: inset 0 0 50px #ffffff6e, inset 20px 0 80px rgba(251, 255, 0, 0.655),
+    inset -20px 0 80px rgba(255, 230, 0, 0.559), inset 20px 0 300px rgba(255, 238, 0, 0.507),
+    inset -20px 0 300px rgb(255, 208, 0), 0 0 50px #ffffff79, -10px 0 80px rgb(255, 217, 0),
+    10px 0 80px rgb(136, 121, 11);
+  transition-duration: 300ms;
+}
+
+.lose {
+  box-shadow: inset 0 0 50px #ffffff6e, inset 20px 0 80px rgba(255, 94, 0, 0.655),
+    inset -20px 0 80px rgba(255, 8, 0, 0.559), inset 20px 0 300px rgba(255, 0, 0, 0.507),
+    inset -20px 0 300px rgb(255, 68, 0), 0 0 50px #ffffff79, -10px 0 80px rgb(255, 25, 0), 10px 0 80px rgb(136, 19, 11);
+  transition-duration: 300ms;
 }
 
 .choice-section {
@@ -167,13 +126,4 @@ button {
       color: rgb(255, 115, 0);
     }
   }
-}
-
-.all-player {
-  color: rgb(255, 166, 0);
-  font-size: 1rem;
-}
-
-.draw {
-  color: rgb(28, 187, 28);
 }
